@@ -4,22 +4,37 @@
 // MCP23008 I2C LCD
 Adafruit_LiquidCrystal lcd(0);
 
-// ==========================
-// Vehicle State
-// ==========================
+//==================================================
+// Vehicle Data
+//==================================================
+
 int vehicleSpeed = 0;
 int fuelLevel = 100;
 int engineTemperature = 25;
 
-// ==========================
-// Dashboard State
-// ==========================
+
+//==================================================
+// Dashboard Status
+//==================================================
+
 bool headlightsOn = false;
 bool leftIndicator = false;
 bool rightIndicator = false;
 bool hazardsOn = false;
 
+
+//==================================================
+// Warning Flags
+//==================================================
+
+bool lowFuel = false;
+bool engineHot = false;
+
+
+//==================================================
 // LCD Buffers
+//==================================================
+
 char line1[17];
 char line2[17];
 
@@ -28,8 +43,12 @@ char line2[17];
 // Function Prototypes
 // =====================================
 void initializeDashboard();
-void showScreen(const char *top, const char *bottom, int delayMs);
+void showScreen(const char *top,const char *bottom,int delayMs);
 void loadingBar();
+
+void readSensors();
+void processVehicleState();
+void updateWarnings();
 void drawDashboard();
 
 
@@ -50,9 +69,14 @@ void setup()
 // =====================================
 void loop()
 {
-  drawDashboard();
-}
+    readSensors();
 
+    processVehicleState();
+
+    updateWarnings();
+
+    drawDashboard();
+}
 
 // =====================================
 // ECU BOOT SEQUENCE
@@ -125,16 +149,41 @@ void loadingBar()
 // =====================================
 void drawDashboard()
 {
-  vehicleSpeed = map(analogRead(A0), 0, 1023, 0, 200);
+    sprintf(line1,
+            "SPD:%3d F:%3d",
+            vehicleSpeed,
+            fuelLevel);
 
-  sprintf(line1, "Speed:%3d", vehicleSpeed);
-  sprintf(line2, "System Ready");
+    sprintf(line2,
+            "TMP:%3dC",
+            engineTemperature);
 
-  lcd.setCursor(0, 0);
-  lcd.print(line1);
+    lcd.setCursor(0,0);
+    lcd.print(line1);
 
-  lcd.setCursor(0, 1);
-  lcd.print(line2);
+    lcd.setCursor(0,1);
+    lcd.print(line2);
 
-  delay(100);
+    delay(100);
+}
+
+void readSensors()
+{
+    vehicleSpeed = map(analogRead(A0),0,1023,0,200);
+
+    fuelLevel = map(analogRead(A1),0,1023,0,100);
+
+    engineTemperature = map(analogRead(A2),0,1023,20,120);
+}
+
+void processVehicleState()
+{
+    lowFuel = (fuelLevel < 15);
+
+    engineHot = (engineTemperature > 105);
+}
+
+void updateWarnings()
+{
+
 }
