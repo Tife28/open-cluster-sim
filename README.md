@@ -1,30 +1,36 @@
-# Mini Automotive Dashboard ECU
+# OpenCluster
 
-A simulated automotive instrument cluster built with Arduino and Tinkercad.
+OpenCluster is an open-source automotive instrument cluster simulator built with Arduino.
 
 ## Features
 
-- ECU Boot Animation
-- Digital Speedometer
-- Fuel Gauge
-- Engine Temperature
-- Turn Indicators
-- Hazard Lights
-- Automatic Headlights
-- Seatbelt Reminder
-- Dashboard Warning System
+- ECU boot animation
+- Vehicle state management
+- Speed, fuel and temperature simulation
+- Event-driven LCD updates
+- Warning management
+- Audible warning system
+- Modular firmware architecture
 
 ## Hardware
 
 - Arduino Uno
-- LCD 16x2 (I2C - MCP23008)
-- Potentiometers
-- LEDs
-- Push Buttons
-- Piezo Buzzer
+- 16x2 I²C LCD (MCP23008)
+- Passive buzzer
+- Potentiometers (Speed, Fuel, Temperature)
 
-## Current Status
+## Roadmap
 
-🚧 In Development
+- [x] LCD Driver
+- [x] ECU Boot
+- [x] Sensor Manager
+- [x] Dashboard Display
+- [x] Vehicle State Manager
+- [x] Warning Manager
+- [x] Event-Driven Display
+- [x] Sound Manager
+- [X] Driver Controls
+- [X] Lighting Manager
+- [ ] Engine Simulation
+- [ ] CAN Bus Integration
 
-Version: v0.1.0
