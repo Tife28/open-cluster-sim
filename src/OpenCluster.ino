@@ -1,6 +1,6 @@
 /*
 ==========================================================
- Open Cluster - Automotive Instrument Cluster Simulator
+ Mini Automotive Dashboard ECU
 ----------------------------------------------------------
  Version : v0.8.0
  Module  : Driver Controls Manager
@@ -19,7 +19,7 @@ Adafruit_LiquidCrystal lcd(0);
 // Pins
 //==================================================
 
-const byte SPEED_SENSOR_PIN = A0;
+const byte THROTTLE_SENSOR_PIN = A0;
 const byte FUEL_SENSOR_PIN  = A1;
 const byte TEMP_SENSOR_PIN  = A2;
 const byte BUZZER_PIN = 8;
@@ -46,6 +46,10 @@ const int MAX_ENGINE_TEMP = 120;
 const int LOW_FUEL_LEVEL    = 15;
 const int HIGH_ENGINE_TEMP  = 105;
 const int OVERSPEED_LIMIT   = 120;
+
+const int IDLE_RPM = 850;
+const int MAX_RPM  = 6000;
+const int MAX_THROTTLE = 100;
 
 //==================================================
 // Vehicle State
@@ -101,10 +105,19 @@ const SoundProfile sounds[] =
 
 struct VehicleData
 {
+      // Vehicle
     int speed;
+    int rpm;
+
+    // Driver input
+    byte throttle;
+
+    // Transmission
+    byte gear;
+
     int fuel;
     int temperature;
-
+   
     bool lowFuel;
     bool engineHot;
     bool overSpeed;
@@ -117,6 +130,9 @@ struct VehicleData
     bool rightButton;
     bool hazardButton;
     bool lightButton;
+  	
+  	// Engine
+    bool engineRunning;
 };
 
 VehicleData vehicle;
@@ -183,7 +199,7 @@ void updateDisplayScheduler();
 void readDriverControls();
 void processDriverControls();
 bool displayNeedsUpdate();
-
+void updateEngine();
 void updateDisplayCache();
 void drawWarningScreen(WarningType warning);
 
@@ -221,6 +237,8 @@ void loop()
 
     readDriverControls();
 
+    updateEngine();
+
     processVehicleState();
 
     processDriverControls();
@@ -241,7 +259,7 @@ void loop()
 
 void initializeDashboard()
 {
-    showScreen("AUTOMOTIVE","ECU v0.4",1200);
+    showScreen("AUTOMOTIVE","ECU v0.8",1200);
 
     showScreen("Loading","Drivers...",800);
 
@@ -309,9 +327,10 @@ void loadingBar()
 
 void readSensors()
 {
-    vehicle.speed =
-        map(analogRead(SPEED_SENSOR_PIN),0,1023,0,MAX_SPEED);
-
+    vehicle.throttle =
+    map(analogRead(THROTTLE_SENSOR_PIN),
+        0,1023,
+        0,MAX_THROTTLE);
     vehicle.fuel =
         map(analogRead(FUEL_SENSOR_PIN),0,1023,0,MAX_FUEL);
 
@@ -341,9 +360,6 @@ void processVehicleState()
     currentState =
         (vehicle.speed == 0) ? READY : DRIVING;
   	
-    vehicle.leftIndicator = vehicle.speed > 20;
-    vehicle.rightIndicator = vehicle.speed > 60;
-    vehicle.headlights = vehicle.speed > 100;
 }
 
 //==================================================
@@ -571,4 +587,23 @@ void processDriverControls()
         vehicle.leftIndicator = true;
         vehicle.rightIndicator = true;
     }
+}
+
+void updateEngine()
+{
+    vehicle.engineRunning = true;
+
+    vehicle.rpm =
+        map(vehicle.throttle,
+            0,
+            100,
+            IDLE_RPM,
+            MAX_RPM);
+
+    vehicle.speed =
+        map(vehicle.rpm,
+            IDLE_RPM,
+            MAX_RPM,
+            0,
+            MAX_SPEED);
 }
