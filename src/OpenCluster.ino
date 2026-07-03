@@ -1,6 +1,6 @@
 /*
 ==========================================================
- Mini Automotive Dashboard ECU
+ Open Cluster - Automotive Instrument Cluster Simulator
 ----------------------------------------------------------
  Version : v0.8.0
  Module  : Driver Controls Manager
