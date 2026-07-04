@@ -62,7 +62,8 @@ The project follows a modular ECU-inspired architecture and is designed for lear
 
 ### v1.0
 - Instrument Cluster Simulator
-
+  
+---
 - [x] LCD Driver
 - [x] ECU Boot
 - [x] Sensor Manager
@@ -92,9 +93,3 @@ Warning Manager
 ├── Sound Manager
 └── Lighting Manager
 ```
-
----
-
-## License
-
-MIT
