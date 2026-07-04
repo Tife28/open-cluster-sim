@@ -12,9 +12,7 @@ The project follows a modular ECU-inspired architecture and is designed for lear
 
 - ECU Boot Animation
 - Vehicle State Manager
-- Speed Simulation
-- Fuel Simulation
-- Engine Temperature Simulation
+- Speed, fuel and temperature simulation
 - Warning Manager
 - Event-driven LCD Updates
 - Audible Warning System
@@ -28,8 +26,8 @@ The project follows a modular ECU-inspired architecture and is designed for lear
 - 16×2 I²C LCD (MCP23008)
 - Passive Buzzer
 - Potentiometers
-- LEDs (Upcoming)
-- Push Buttons (Upcoming)
+- LEDs
+- Push Buttons
 
 ---
 
@@ -65,6 +63,18 @@ The project follows a modular ECU-inspired architecture and is designed for lear
 ### v1.0
 - Instrument Cluster Simulator
 
+- [x] LCD Driver
+- [x] ECU Boot
+- [x] Sensor Manager
+- [x] Dashboard Display
+- [x] Vehicle State Manager
+- [x] Warning Manager
+- [x] Event-Driven Display
+- [x] Sound Manager
+- [X] Driver Controls
+- [X] Lighting Manager
+- [ ] Engine Simulation
+- [ ] CAN Bus Integration
 ---
 
 ## Project Architecture
