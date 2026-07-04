@@ -1,14 +1,20 @@
 # Changelog
 
-## v0.6.0
+## v0.8.0
+
+### Added
+- Light Manager
+- Modular project architecture
+
+---
+
+## v0.7.0
 
 ### Added
 
-- Sensor Manager
 - Vehicle State Manager
-- Warning Manager
-- Event-driven LCD updates
 - Sound Manager
+- Driver Controls
 - Modular project architecture
 
 ---
@@ -17,7 +23,7 @@
 
 ### Added
 
-- Dashboard display
+- Event-driven LCD updates
 - Warning screen rotation
 
 ---
@@ -26,5 +32,8 @@
 
 ### Added
 
-- ECU boot animation
 - Sensor initialization
+- Warning Manager
+- Sensor Manager
+- ECU boot animation
+- Dashboard display
