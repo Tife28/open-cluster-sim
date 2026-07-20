@@ -1,0 +1,17 @@
+title: OpenCluster
+description: Mini Automotive Dashboard ECU Simulation
+
+remote_theme: just-the-docs/just-the-docs
+
+color_scheme: dark
+
+search_enabled: true
+
+heading_anchors: true
+
+back_to_top: true
+
+footer_content: "© 2026 Bolutife Ekundayo"
+
+aux_links:
+  GitHub Repository: https://github.com/Tife28/open-cluster-sim
