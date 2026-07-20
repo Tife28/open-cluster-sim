@@ -115,13 +115,13 @@ This documentation walks through the project from both an embedded systems and a
 
 | Section | Description |
 |----------|-------------|
-| 🏗 Architecture | Overall system architecture and module interactions |
-| ✨ Features | Dashboard capabilities and implemented functionality |
-| 🔧 Hardware | Components, wiring, and electronics |
-| 💻 Software | Project structure and code organization |
-| 🚦 State Machine | Vehicle operating states and transitions |
-| ⚠ Warning Manager | Warning detection and handling logic |
-| 🛣 Roadmap | Planned improvements and future milestones |
+| 🏗 [Architecture](architecture.md) | Overall system architecture and module interactions |
+| ✨ [Features](features.md) | Dashboard capabilities and implemented functionality |
+| 🔧 [Hardware](hardware) | Components, wiring, and electronics |
+| 💻 [Software](software) | Project structure and code organization |
+| 🚦 [State Machine](state-machine) | Vehicle operating states and transitions |
+| ⚠ [Warning Manager](warning-manager) | Warning detection and handling logic |
+| 🛣 [Roadmap](roadmap) | Planned improvements and future milestones |
 
 ---
 
