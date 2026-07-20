@@ -21,7 +21,11 @@ The system consists of four main parts:
 Together, these components simulate how a vehicle dashboard receives, processes, and displays information.
 
 ---
+## Hardware Setup
 
+![Hardware](assets/images/hardware-setup.png)
+
+---
 # Hardware Architecture
 
 ```text
